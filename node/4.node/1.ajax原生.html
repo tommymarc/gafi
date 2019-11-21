@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+</head>
+<body>
+
+
+<script>
+    console.log(1);
+    //ajax原生
+    let xhr = new XMLHttpRequest();
+    //xhr.open('异步请求方法','url地址',是否异步)
+    xhr.open('GET','user.json',true);
+    xhr.onreadstatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            alert(xhr.responseText);
+        }
+    };
+    xhr.send();
+    setTimeout(function(){
+        alert(2);
+    },1000);
+    console.log(3);
+
+</script>
+</body>
+</html>

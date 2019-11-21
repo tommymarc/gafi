@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>使用回调实现 - 球滚动</title>
+    <style>
+        .ball{
+            width:50px;
+            height:50px;
+            border-radius:50%;
+        }
+        .ball1{
+            background-color:red
+        }
+        .ball2{
+            background-color:yellow;
+        }
+        .ball3{
+            background-color:blue;
+        }
+    </style>
+</head>
+<body>
+    <div class = "ball ball1" style="margin-left: 0px"></div>
+    <div class = "ball ball2" style="margin-left: 0px"></div>
+    <div class = "ball ball3" style="margin-left: 0px"></div>
+<script>
+    let ball1 = document.querySelector('.ball1');
+    let ball2 = document.querySelector('.ball2');
+    let ball3 = document.querySelector('.ball3');
+    function move(ball,target,cb){
+        let timer = setInterval(function(){
+            //先取到当前的left 值
+            let left = parseInt(ball.style.marginLeft);
+            if(left < target){
+                ball.style.marginLeft = (left+1)+'px';
+            }else{
+                clearInterval(timer);
+                cb();
+            }
+        },100)
+    }
+    move(ball1,100,function(){
+        move(ball2,100,function(){
+            move(ball3,100,function(){
+                alert('over');
+            })
+        })
+    })
+</script>
+</body>
+</html>

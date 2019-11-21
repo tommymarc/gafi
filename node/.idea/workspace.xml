@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c178f409-07b5-45db-b3b0-bd5b697d40c0" name="默认更改列表" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="html" />
+        <option value="TypeScript File" />
+        <option value="tsconfig.json" />
+        <option value="package.json" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+        <option value="HTML5 File" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1R6yb9CeG8c6puKchLpSJVYpygl" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.12.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/25.express" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/25.express" />
+      <recent name="$PROJECT_DIR$/25.express/lib" />
+      <recent name="$PROJECT_DIR$/25.express/lib/router" />
+      <recent name="$PROJECT_DIR$/20.http" />
+      <recent name="$PROJECT_DIR$/18.cache" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/25.express" />
+      <recent name="$PROJECT_DIR$/24.express/导读" />
+      <recent name="$PROJECT_DIR$/12.TCP-IP" />
+      <recent name="$PROJECT_DIR$/10.stream2" />
+      <recent name="$PROJECT_DIR$/8.fs" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Node.js.1.static.js">
+    <configuration name="1.static.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/../node/23.express/1.static.js" working-dir="$PROJECT_DIR$/../node/23.express">
+      <method v="2" />
+    </configuration>
+    <configuration name="2.tmpl.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/../node/22.express/2.tmpl.js" working-dir="$PROJECT_DIR$/../node/22.express">
+      <method v="2" />
+    </configuration>
+    <configuration name="5.temlate.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/../node/22.express/test/5.temlate.js" working-dir="$PROJECT_DIR$/../node/22.express/test">
+      <method v="2" />
+    </configuration>
+    <configuration name="6.query.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/../node/22.express/test/6.query.js" working-dir="$PROJECT_DIR$/../node/22.express/test">
+      <method v="2" />
+    </configuration>
+    <configuration name="ware.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/../node/22.express/ware.js" working-dir="$PROJECT_DIR$/../node/22.express">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.2.tmpl.js" />
+      <item itemvalue="Node.js.5.temlate.js" />
+      <item itemvalue="Node.js.6.query.js" />
+      <item itemvalue="Node.js.ware.js" />
+      <item itemvalue="Node.js.1.static.js" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.1.static.js" />
+        <item itemvalue="Node.js.ware.js" />
+        <item itemvalue="Node.js.6.query.js" />
+        <item itemvalue="Node.js.5.temlate.js" />
+        <item itemvalue="Node.js.2.tmpl.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c178f409-07b5-45db-b3b0-bd5b697d40c0" name="默认更改列表" comment="" />
+      <created>1569001909757</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1569001909757</updated>
+      <workItem from="1569001914900" duration="20774000" />
+      <workItem from="1569220034498" duration="46000" />
+      <workItem from="1569220200380" duration="213000" />
+      <workItem from="1569221244970" duration="211000" />
+      <workItem from="1569223669126" duration="963000" />
+      <workItem from="1569252897160" duration="36000" />
+      <workItem from="1569309374813" duration="1400000" />
+      <workItem from="1570352211964" duration="3262000" />
+      <workItem from="1570611728338" duration="367000" />
+      <workItem from="1571381224093" duration="63832000" />
+      <workItem from="1571837682514" duration="121743000" />
+      <workItem from="1572683226148" duration="135434000" />
+      <workItem from="1574245677662" duration="20906000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

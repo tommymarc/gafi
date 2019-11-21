@@ -1,0 +1,21 @@
+#! /usr/bin/env node
+//这是一个可执行文件，如何执行呢？告诉操作系统调用哪个命令来执行此当前脚本
+//将当前文件目录加入到$path 是可以全局使用，但是我们不可能把所有的目录都加入path，那么如果想要执行当前目录，下面的文件，就得用./xx
+//mac 需要设置权限  chmod +x mac
+
+let yargs = require('yargs');
+let argv = yargs.options('n',{
+    alias:'name',  //别名
+    demand:true, //必填
+    default:'xia',
+    description:'请输入你的姓名'
+})
+    .usage('hello [option]')
+    .help()  //指定一个帮助命令信息
+    .alias('h','help')  //指定用法的一个描述，该如何用
+    .example('hello --name xia','执行hello命令，然后传入name参数为xia')
+    .argv;
+console.log(argv);
+
+console.log('hello'+ argv.name);
+

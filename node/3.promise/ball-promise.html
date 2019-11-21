@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>使用Promise实现 - 球滚动</title>
+</head>
+<style>
+    .ball{
+        width:50px;
+        height:50px;
+        border-radius:50%;
+    }
+    .ball1{background-color:red;}
+    .ball2{background-color:yellow;}
+    .ball3{background-color:blue;}
+</style>
+<body>
+    <div class = "ball ball1" style = "margin-left: 0px;"></div>
+    <div class = "ball ball2" style = "margin-left: 0px;"></div>
+    <div class = "ball ball3" style = "margin-left: 0px;"></div>
+<script>
+    let ball1 = document.querySelector('.ball1');
+    let ball2 = document.querySelector('.ball2');
+    let ball3 = document.querySelector('.ball3');
+    function move(ball,target,cb){
+        let timer = setInterval(function(){
+            //先去到当前left的值
+            let left = parseInt(ball.style.marginLeft);
+            if(left < target){
+                ball.style.marginLeft = (left+1)+'px';
+            }else{
+                clearInterval(timer);
+                cb();
+            }
+        },10)
+    }
+
+
+    function move(ball,target){
+        //返回promise 进行异步操作
+        return new Promise(function(resolve,reject){
+            //设置定时器
+            let index = 0;
+            let timer = setInterval(function(){
+                //先取到当前left的值
+                // let left = parseInt(ball.style.marginLeft);
+                // if(left < target){//如果当前距离小于目标距离
+                //     ball.style.marginLeft = (left+1)+'px';
+                // }
+                //防止页面回流，不停刷新，则使用transform来进行动画操作
+                if(index++ < target){
+                    ball.style.transform = `translateX(${index}px)`;
+                }
+                else{
+                    //清除定时器
+                    clearInterval(timer);
+                    resolve();
+                }
+            },13)
+        })
+    }
+
+    move(ball1,100)
+        .then(function(){
+        return move(ball2,100);
+    })
+        .then(function(){
+        return move(ball3,100);
+    })
+        .then(function(){
+        alert('over')
+    })
+    /**
+    move(ball1,100,function(){//执行完1后 回调函数
+        move(ball2,100,function(){//执行完2后 回调函数
+            move(ball3,100,function(){//执行完3后 回调函数
+                alert('over');
+            })
+        })
+    })
+    */
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+fs 模块
+整体读取文件
+  - 异步读取
+    - fs.readFile(path[,options],callback)
+      - options
+        - encoding
+        - flag 默认 = 'r'
+  - 同步读取
+    - fs.readFileSync(path[,options])
+写入文件
+  - 异步写入
+    - fs.writeFile(file,data[,options],callback)
+      - options
+        - encoding
+        - flag 默认 = 'w'
+        - mode 读写权限，默认为0o666
+  - 同步写入
+    - fs.writeFileSync(file,data[,options])
+  - 追加文件
+    - fs.appendFile(file,data[,options],callback)
+
+从指定位置处开始读取文件
+  - 打开文件
+    - fs.open(filename,flags,[mode],callback)
+  - 读取文件
+    - fs.read(fd,buffer[,offset[,length[,lposition]]],callback)
+  - 写入文件
+    - fs.write(fd,buffer[,offset[,length[,position]]],callback)
+  - 关闭文件
+    - fs.close(fd,[callback])
+  - 同步磁盘缓存
+    - fs.fsync(fd,[callback])
+  - 拷贝文件
+    - function copy(src,target){
+      fs.readFile(src,function(err,data)){
+          fs.writeFile(target,data);
+      }
+    }
+
+目录操作
+  - 创建目录
+    - fs.mkdir(path[,mode],callback)
+    - 要求父目录必须存在
+  - 判断一个文件是否有权限访问
+    - fs.access(path[,mode],callback)
+递归创建目录
+  - 读取目录下所有的文件
+    - fs.readdir(path[,options],callback)
+  - 查看文件目录信息
+    - fs.stat(path,callback)
+      - stats.isFile()
+      - stats.isDirectory()
+      - atime(Access Time)      上次被读取的时间
+      - ctime(State Change Time) 属性或内容上次被修改的时间//仅文件内容
+      - mtime(Modifuled time)   档案的内容上次被修改的时间//一切文件信息
+  - 移动文件或目录
+    - fs.rename(oldPath,newPath,callback)
+  - 删除文件
+    -fs.unlink(path,callback)
+  - 截断文件  truncate
+    - fs.truncate(path[,length],callback)
+  - 删除空目录
+    - 只能用在空目录上
+  - 遍历算法
+    - 目录是一个树状解构，在遍历时一般使用深度优化+先序遍历算法。深度优化，意味着到达一个节点后，首先接着遍历子节点而不是另据节点。
+      先序遍历，意味着首次到达了某节点就算遍历完成，而不是最后一次返回某节点才算数。
+      因此使用这种遍历方式时，下边这棵树的遍历顺序是A>B>D>E>C>F
+            A
+           / \
+          B   C
+         / \    \
+        D   E    F
+    - 同步深度优先 + 先序遍历
+      function deepSync(dir){
+        console.log(dir);
+        fs.readdirSync(dir).forEach(file=>{
+            let child = path.join(dir,file);
+            let stat = fs.statSync(child);
+            if(stat.isDirectory()){
+                deepSync(child);
+            }else{
+               console.log(child);
+            }
+         })
+      }
+    - 异步深度优先 + 先序遍历
+    - 监视文件或目录
+     - fs.watchFile(filename[,options],listener)
+

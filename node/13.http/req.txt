@@ -1,0 +1,10 @@
+POST / HTTP/1.1
+Host: loacalhost:8080
+User-Agent: curl/7.53.0
+Accept: */*
+Content-Length: 15
+Content-Type: application/x-www-form-urlencoded
+
+name=xxxx&age=9
+
+like=football

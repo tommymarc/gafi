@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>使用async/await 实现 - 球滚动</title>
+    <style>
+        .ball{
+            width:50px;
+            height:50px;
+            border-radius:50%;
+        }
+        .ball1{background-color:red;}
+        .ball2{background-color:yellow;}
+        .ball3{background-color:blue;}
+    </style>
+</head>
+<body>
+<div class="ball ball1" style=" margin-left:0px;"></div>
+<div class="ball ball2" style=" margin-left:0px;"></div>
+<div class="ball ball3" style=" margin-left:0px;"></div>
+<script>
+    let ball1 = document.querySelector('.ball1');
+    let ball2 = document.querySelector('.ball2');
+    let ball3 = document.querySelector('.ball3');
+    function move(ball,target){
+        return new Promise(function(resolve,reject){
+            let index = 0;
+            let timer = setInterval(function(){
+                if(index++ < target){
+                    ball.style.transform = `translateX(${index}px)`;
+                }else{
+                    clearInterval(timer);
+                    resolve();
+                }
+            },13)
+        })
+    }
+    async function go(){
+        await move(ball1,100);
+        await move(ball2,100);
+        await move(ball3,100);
+        await alert('ok');
+        await alert('开心');
+    }
+    go();
+</script>
+</body>
+</html>

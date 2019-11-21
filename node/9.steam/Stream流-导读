@@ -1,0 +1,128 @@
+1.流的概念
+  - 流是一组有序的，有起点和终点的字节数据传输手段
+  - 它不关心文件的整体内容，只关注是否从文件中读到了数据，以及读到数据之后的处理
+  - 流是一个抽象接口，被Node 中的很多对象所实现。比如HTTP 服务器 request 和response 对象都是流
+2.可读流 createReadStream
+  - 实现了stream.Readable 接口的对象，将对象数据读取为流数据，当监听data 事件后，开始发射数据
+        fs.createReadStream = function(path,options){
+          return new ReadStram(path,options);
+        };
+        util.inherits(ReadStream,Readable)
+    - 可读流例子包括
+     - HTTP responses, on the client
+     - HTTP requests, on the server
+     - fs read streams
+     - zlib streams
+     - crypto streams
+     - TCP sockets
+     - child process stdout and stderr
+     - process.stdin
+
+    2.1 创建可读流
+       var rs = fs.createReadStream(path,[options]);
+     1.path读取文件的路径
+     2.options
+       - flags 打开文件要做的操作，默认为 'r'
+       - encoding 默认为null
+       - start 开始读取的索引位置
+       - end 结束读取的索引位置(包括结束位置)
+       - highWaterMark 读取缓存区 默认的大小为64kb
+       //如果指定的utf8编码，highWaterMark 要大于3个字节
+
+    2.2 监听data 事件
+     - 流切换到流动模式，数据会被尽可能快的独处
+        rs.on('data',function(data){
+            console.log(data)
+        })
+    2.3 监听end 事件
+     - 该事件会在读完数据后被触发
+        rs.on('end',function(){
+            console.log(读取完成)
+        })
+    2.4 监听error 事件
+        rs.on('err',function(){
+            console.log('出现错误')
+        })
+    2.5 监听open 事件
+        rs.on('open',function(){
+            console.log('文件打开')
+        })
+    2.6 监听close 事件
+        rs.on('close',function(){
+            console.log('文件关闭')
+        })
+    2.7 设置编码
+        rs.setEncoding('utf8')
+    2.8 暂停和恢复触发data
+        rs.on('data',function(data){
+            rs.pause();// 暂停
+            console.log(data);
+        })
+        setTimeout(function(){
+            rs.resume();// 恢复
+        },2000);
+3.可写流 createWriteStream
+  - 实现了stream.Writable 接口的对象来将流数据写入到对象中
+        fs.createWriteStream = function(path,options){
+            return new WriteStream(path,options);
+        }
+        util.inherits(WriteStream,Writable);
+
+    3.1 创建可写流
+        var ws = fs.creatWriteStream(path,[options])
+    3.2 write 方法
+        ws.write()
+    3.3 end 方法
+        ws.end(chunk,[encoding],callback);
+        - 表明接下来没有数据要被写入Writable 通过传入可选的chunk 和encoding 参数
+          可以在关闭流之前再写入一段数据，如果传入了可选的callback函数，它将作为'finish'事件的回调函数
+    3.4 drain 排水方法
+      - 当一个流不出在drain的状态，对write() 的调用会缓存数据块，并且返回false，一旦所有当前所有缓存的数据块都排空了（被操作系统接受来进行输出）
+        那么'drain' 事件就会被触发
+      - 建议，一旦write() 返回false，在'drain' 事件触发前，不能写入任何数据块
+    3.5 finish 方法
+      - 在调用了stream.end()方法，且缓冲区数据都已经传给底层系统之后，finish 事件将被触发
+4.pipe 方法
+    4.1 pipe 方法的原理
+      - let fs = require('fs')
+        let ws = fs.createWriteStream('./2.txt');
+        let rs = fs.createReadStream('./1.txt');
+        rs.on('data',function(data){
+            let flag = ws.write(data);
+            if(!flag)
+            rs.pause;
+        });
+        ws.on('drain',function(){
+            rs.resume();
+        });
+        ws.on('end',function(){
+            ws.end();
+        })
+    4.2 pipe  管道
+      - readStream.pipe(writeStream);
+         let from = fs.createReadStream('./1.txt');
+         let to = fs.createWriteStream('./2.txt');
+         from.pipe(to);
+      - 将数据的滞留量限制到一个可接受的水平，以使得不同速度的来源和目标不会淹没可用内存
+    4.3 unpipe 脱管
+      - readable.unpipe()方法将之前通过stream.pipe()方法 绑定的流分离
+      - 如果destination 没有传入，则所有绑定的流都会被分离
+        -let fs = require('fs')
+         let rs = createReadStream('./1.txt');
+         let ws = createWriteStream('./2.txt');
+         rs.pipe(ws);
+         setTimeout(()=>{
+            //手工关闭文件流
+            rs.unpipe(ws);
+            //关闭向2.txt的写入
+            ws.end()
+         },200);
+    4.4 cork   软木
+      - 调用writable.cork() 方法将强制所有写入数据都存放到内存中的缓存区里。
+        直到调用stream.uncork() 或stream.end()方法时，缓存区的数据将会被输出
+    4.5 uncork  开瓶器
+      - writable.uncork()将输出在 stream.cork()方法被调用之后缓存在内存中的所有数据
+
+5.简单的实现啊
+    5.1 可读流的简单实现
+    5.2 可写流的简单实现
