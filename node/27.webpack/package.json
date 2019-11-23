@@ -1,0 +1,14 @@
+{
+  "name": "27.webpack",
+  "version": "1.0.0",
+  "description": "1.什么是webpack",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode development"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-cli": "^3.3.10"
+  }
+}

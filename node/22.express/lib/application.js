@@ -6,6 +6,8 @@ const methods = require('methods');//['get','post']
 const slice = Array.prototype.slice;
 function Application(){
     this._router = new Router();
+    this.settings = {};//用来保存参数
+    this.engines = {};//用来保存文件扩展名和渲染函数的函数
 }
 Application.prototype.lazyrouter = function(){
     if(!this._router){
@@ -15,7 +17,20 @@ Application.prototype.lazyrouter = function(){
 Application.prototype.param = function(name,handler){
     this.lazyrouter();
     this._router.param.apply(this._router,arguments);
+};
+// 传两个参数表示设置，传一个参数表示获取
+Application.prototype.set = function(key,val){
+    if(arguments.length == 1){
+        return this.settings[key];
+    }
+    this.settings[key] = val;
+};
+//规定何种文件用什么来渲染
+Application.prototype.engine = function(ext,render){
+    let extension = ext[0] == '.'?ext :'.' + ext;
+    this.engines[extension] = render;
 }
+
 methods.forEach(function(method){
     Application.prototype[method] = function(path){
         this.lazyrouter();
@@ -24,6 +39,11 @@ methods.forEach(function(method){
         return this;
     }
 })
+Application.prototype.route = function(path){
+    this.lazyrouter();//懒加载路由容器
+    //创建一个路由，然后创建一个layer， layer.route = route.this.stack.push(layer)
+    this._router.route(path);
+}
 /*Application.prototype.get = function(path,handler){
     this.lazyrouter();
     this._router.get(path,handler);
